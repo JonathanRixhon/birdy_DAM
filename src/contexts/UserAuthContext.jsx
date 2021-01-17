@@ -8,7 +8,6 @@ export const UserAuthProvider = (props) => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(setCurrentUser)
   }, [])
-
   return (
     <UserAuthContext.Provider value={[currentUser, setCurrentUser]}>
       <App />

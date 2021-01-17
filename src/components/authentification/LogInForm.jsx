@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
-import { UserAuthContext } from '../contexts/UserAuthContext'
+import { UserAuthContext } from '../../contexts/UserAuthContext'
 /* import firebase from 'firebase'*/
-import firebase from '../utils/firebaseConfig'
-export default function AuthForm() {
+import firebase from '../../utils/firebaseConfig'
+export default function LogInForm() {
   const [currentUser, setCurrentUser] = useContext(UserAuthContext)
   const [mail, setMail] = useState('')
   const [pass, setPass] = useState('')
@@ -19,6 +19,9 @@ export default function AuthForm() {
         var errorMessage = error.message
         console.log(errorMessage)
       })
+  }
+  function writeUserData() {
+    firebase.database().ref('users/').set({ test: 'test' })
   }
   return (
     <form onSubmit={(e) => handleSubmit(e)}>

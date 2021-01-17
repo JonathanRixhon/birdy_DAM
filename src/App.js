@@ -1,3 +1,4 @@
+import './app.css'
 import React, { useState, useContext } from 'react'
 import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom'
 import firebase from './utils/firebaseConfig'
@@ -5,13 +6,13 @@ import firebase from './utils/firebaseConfig'
 import { UserAuthContext } from './contexts/UserAuthContext'
 /* Components */
 import LogIn from './components/LogIn'
-import SignUp from './components/SignUp'
+import SignUp from './components/authentification/SignUp'
 import Home from './components/Home'
 
 /* App */
 function App() {
   const [currentUser, setCurrentUser] = useContext(UserAuthContext)
-  console.log(currentUser)
+
   return (
     <BrowserRouter>
       <header>
