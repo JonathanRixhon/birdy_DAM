@@ -10,14 +10,15 @@ export default function AuthForm() {
     e.preventDefault()
     firebase
       .auth()
-      .signInWithEmailAndPassword(mail, pass)
+      .createUserWithEmailAndPassword(mail, pass)
       .then((user) => {
+        // Signed in
         setCurrentUser(user)
       })
       .catch((error) => {
         var errorCode = error.code
         var errorMessage = error.message
-        console.log(errorMessage)
+        // ..
       })
   }
   return (

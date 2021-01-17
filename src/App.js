@@ -5,6 +5,7 @@ import firebase from './utils/firebaseConfig'
 import { UserAuthContext } from './contexts/UserAuthContext'
 /* Components */
 import LogIn from './components/LogIn'
+import SignUp from './components/SignUp'
 import Home from './components/Home'
 
 /* App */
@@ -18,13 +19,14 @@ function App() {
         <button onClick={() => firebase.auth().signOut()}>Déconnexion</button>
       </header>
       {currentUser ? (
-        <Redirect to={{ pathname: './Home' }} />
+        <Redirect to={{ pathname: './' }} />
       ) : (
-        <Redirect to={{ pathname: './login' }} />
+        <Redirect to={{ pathname: './connexion' }} />
       )}
       <Switch>
         <Route path='/' component={Home} exact />
-        <Route path='/login' component={LogIn} exact />
+        <Route path='/connexion' component={LogIn} exact />
+        <Route path='/inscription' component={SignUp} exact />
       </Switch>
     </BrowserRouter>
   )
