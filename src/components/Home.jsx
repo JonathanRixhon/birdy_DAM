@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { UserListProvider } from '../contexts/UserListContext'
 
 export default function Home() {
-  return <h1>Home</h1>
+  return (
+    <Fragment>
+      <h2>Acceuil</h2>
+    </Fragment>
+  )
 }

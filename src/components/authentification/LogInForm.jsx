@@ -20,9 +20,7 @@ export default function LogInForm() {
         console.log(errorMessage)
       })
   }
-  function writeUserData() {
-    firebase.database().ref('users/').set({ test: 'test' })
-  }
+
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor='email'>Email</label>
