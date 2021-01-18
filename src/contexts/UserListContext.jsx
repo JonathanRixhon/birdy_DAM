@@ -16,10 +16,9 @@ export const UserListProvider = (props) => {
       setUserList(arrayUsers)
     })
   }, [])
-
   return (
     <UserListContext.Provider value={[userList, setUserList]}>
-      <UserList />
+      {props.children}
     </UserListContext.Provider>
   )
 }

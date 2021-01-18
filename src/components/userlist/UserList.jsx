@@ -1,8 +1,9 @@
 import React, { Fragment, useContext } from 'react'
 import { UserListContext } from '../../contexts/UserListContext'
 import SingleUser from './SingleUser'
-export default function UserList() {
+export default function UserList(props) {
   const [userList, setUserList] = useContext(UserListContext)
+  console.log(props.test)
 
   return (
     <Fragment>
