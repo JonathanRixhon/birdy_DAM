@@ -11,10 +11,8 @@ export default function AuthForm() {
     idSc: '',
     lastName: '',
     name: '',
-    places: {
-      /* 'nom de place': 'valeure' */
-    },
-    captures: [],
+    places: {},
+    captures: {},
   })
   const handleSubmit = (e) => {
     e.preventDefault()

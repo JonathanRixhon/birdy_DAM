@@ -1,28 +1,20 @@
-import React, { Fragment, useContext } from 'react'
-import { Link } from 'react-router-dom'
-
+import React, { Fragment, useContext, useState } from 'react'
+import ItemPrise from './ItemPrise'
+import { PrisesContext } from '../../contexts/PrisesContext'
 export default function MesPrises() {
+  const [prises, setPrises] = useContext(PrisesContext)
   return (
     <Fragment>
       <h2>Mes prises</h2>
-      <ul>
-        <li>
-          <h3>Epervier d'europe</h3>
-          <img
-            src='https://www.consoglobe.com/wp-content/uploads/2020/06/epervier_shutterstock_45617836_ban.jpg'
-            alt=''
-          />
-          <p>
-            Le <time dateTime='2020-03-22'>22 mars 2022</time> à
-            <span> Harzé</span>
-          </p>
-          <dl>
-            <dt>Numéro de bague</dt>
-            <dd>F 1812 001 BEL U198</dd>
-          </dl>
-          <Link to='/mes_prises/nom_capture'>En savoir plus</Link>
-        </li>
-      </ul>
+      {prises ? (
+        <ul>
+          {prises.map((prise, index) => (
+            <ItemPrise key={index} capture={prise} number={index} />
+          ))}
+        </ul>
+      ) : (
+        <h3>Chargement</h3>
+      )}
     </Fragment>
   )
 }

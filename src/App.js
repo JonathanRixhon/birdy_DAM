@@ -5,6 +5,7 @@ import firebase from './utils/firebaseConfig'
 /* Contexts */
 import { UserAuthContext } from './contexts/UserAuthContext'
 import { UserListProvider } from './contexts/UserListContext'
+import { PrisesProvider } from './contexts/PrisesContext'
 /* Components */
 import Nav from './components/userlist/Nav'
 import LogIn from './components/LogIn'
@@ -13,6 +14,7 @@ import Home from './components/Home'
 import UserList from './components/userlist/UserList'
 import AddBird from './components/addbird/AddBird'
 import Prises from './components/prises/Prises'
+import SinglePrise from './components/prises/SinglePrise'
 
 /* App */
 function App() {
@@ -35,7 +37,6 @@ function App() {
         <Route path='/' component={Home} exact />
         <Route path='/connexion' component={LogIn} exact />
         <Route path='/inscription' component={SignUp} exact />
-        <Route path='/mes_prises' component={Prises} exact />
         <Route path='/utilisateurs' exact>
           <UserListProvider>
             <UserList />
@@ -45,6 +46,16 @@ function App() {
           <UserListProvider>
             <AddBird />
           </UserListProvider>
+        </Route>
+        <Route path='/mes_prises' exact>
+          <PrisesProvider>
+            <Prises />
+          </PrisesProvider>
+        </Route>
+        <Route path='/mes_prises/:id_capture' exact>
+          <PrisesProvider>
+            <SinglePrise />
+          </PrisesProvider>
         </Route>
       </Switch>
     </BrowserRouter>

@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useState } from 'react'
 import firebase from '../../utils/firebaseConfig'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
 import { Redirect } from 'react-router-dom'
+import * as geolib from 'geolib'
 
 export default function AddBird() {
   const [submited, setSubmited] = useState()
@@ -9,7 +10,27 @@ export default function AddBird() {
   const [currentUser, setCurrentUser] = useContext(UserAuthContext)
   const [bird, setBird] = useState({})
 
-  console.log(currentUser.uid)
+  const [currentPosition, setCurrentPosition] = useState()
+
+  const setLocation = (position) => {
+    if (position) {
+      let tempPosition = {
+        longitude: position.coords.longitude,
+        latitude: position.coords.latitude,
+      }
+      setCurrentPosition(tempPosition)
+      setBird({ ...bird, place: tempPosition })
+    }
+  }
+
+  const errorHandler = (error) => {
+    console.log(error)
+  }
+
+  const geolocate = (e) => {
+    e.preventDefault()
+    navigator.geolocation.getCurrentPosition(setLocation, errorHandler)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,6 +41,8 @@ export default function AddBird() {
   if (submited) {
     return <Redirect to={{ pathname: '/' }} />
   }
+
+  console.log(bird)
   return (
     <Fragment>
       <h2>Ajouter un oiseau</h2>
@@ -34,13 +57,38 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, name: e.target.value })}
           />
 
-          <label htmlFor='lieu'>Lieu</label>
-          <input
-            type='text'
-            name='lieu'
-            id='lieu'
-            onChange={(e) => setBird({ ...bird, place: e.target.value })}
-          />
+          <fieldset>
+            <legend>Lieu</legend>
+            <label htmlFor='longitude'>Longitude</label>
+            <input
+              type='text'
+              name='longitude'
+              id='longitude'
+              placeholder={currentPosition ? currentPosition.longitude : ''}
+              onChange={(e) =>
+                setBird({
+                  ...bird,
+                  place: { ...bird.place, longitude: e.target.value },
+                })
+              }
+            />
+            <label htmlFor='latitude'>Latitude</label>
+            <input
+              type='text'
+              name='latitude'
+              id='latitude'
+              placeholder={currentPosition ? currentPosition.latitude : ''}
+              onChange={(e) =>
+                setBird({
+                  ...bird,
+                  place: { ...bird.place, latitude: e.target.value },
+                })
+              }
+            />
+            <a href='#' onClick={(e) => geolocate(e)}>
+              Géolocaliser
+            </a>
+          </fieldset>
 
           <label htmlFor='date'>Date</label>
           <input
@@ -93,7 +141,7 @@ export default function AddBird() {
             type='text'
             name='poids'
             id='poids'
-            onChange={(e) => setBird({ ...bird, wheight: e.target.value })}
+            onChange={(e) => setBird({ ...bird, weight: e.target.value })}
           />
 
           <label htmlFor='adiposité'>Adiposité</label>
