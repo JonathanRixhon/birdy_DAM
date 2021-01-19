@@ -12,6 +12,7 @@ import SignUp from './components/authentification/SignUp'
 import Home from './components/Home'
 import UserList from './components/userlist/UserList'
 import AddBird from './components/addbird/AddBird'
+import Prises from './components/prises/Prises'
 
 /* App */
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path='/' component={Home} exact />
         <Route path='/connexion' component={LogIn} exact />
         <Route path='/inscription' component={SignUp} exact />
+        <Route path='/mes_prises' component={Prises} exact />
         <Route path='/utilisateurs' exact>
           <UserListProvider>
             <UserList />

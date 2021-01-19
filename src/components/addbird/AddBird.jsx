@@ -1,15 +1,32 @@
 import React, { Fragment, useContext, useState } from 'react'
+import firebase from '../../utils/firebaseConfig'
+import { UserAuthContext } from '../../contexts/UserAuthContext'
+import { Redirect } from 'react-router-dom'
 
 export default function AddBird() {
+  const [submited, setSubmited] = useState()
+
+  const [currentUser, setCurrentUser] = useContext(UserAuthContext)
   const [bird, setBird] = useState({})
-  console.log(bird)
+
+  console.log(currentUser.uid)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmited(true)
+    firebase.database().ref(`users/${currentUser.uid}/captures`).push(bird)
+    console.log(e)
+  }
+  if (submited) {
+    return <Redirect to={{ pathname: '/' }} />
+  }
   return (
     <Fragment>
       <h2>Ajouter un oiseau</h2>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
           <legend>Informations générales</legend>
-          <label for='nom'>Nom</label>
+          <label htmlFor='nom'>Nom</label>
           <input
             type='text'
             name='nom'
@@ -17,7 +34,7 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, name: e.target.value })}
           />
 
-          <label for='lieu'>Lieu</label>
+          <label htmlFor='lieu'>Lieu</label>
           <input
             type='text'
             name='lieu'
@@ -25,7 +42,7 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, place: e.target.value })}
           />
 
-          <label for='date'>Date</label>
+          <label htmlFor='date'>Date</label>
           <input
             type='date'
             name='date'
@@ -33,7 +50,7 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, date: e.target.value })}
           />
 
-          <label for='technique'>Technique</label>
+          <label htmlFor='technique'>Technique</label>
           <select
             name='technique'
             id='technique'
@@ -43,7 +60,7 @@ export default function AddBird() {
             <option value='piege'>Piége</option>
           </select>
 
-          <label for='numero'>Numéro de bague</label>
+          <label htmlFor='numero'>Numéro de bague</label>
           <input
             type='text'
             name='numero'
@@ -55,7 +72,7 @@ export default function AddBird() {
         <fieldset>
           <legend>Informations à propos de la prise</legend>
 
-          <label for='nomlatin'>Nom Latin</label>
+          <label htmlFor='nomlatin'>Nom Latin</label>
           <input
             type='text'
             name='nomlatin'
@@ -63,7 +80,7 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, latinName: e.target.value })}
           />
 
-          <label for='chargealaire'>Charge alaire</label>
+          <label htmlFor='chargealaire'>Charge alaire</label>
           <input
             type='chargealaire'
             name='chargealaire'
@@ -71,7 +88,7 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, charge: e.target.value })}
           />
 
-          <label for='poids'>Poids</label>
+          <label htmlFor='poids'>Poids</label>
           <input
             type='text'
             name='poids'
@@ -79,7 +96,7 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, wheight: e.target.value })}
           />
 
-          <label for='adiposité'>Adiposité</label>
+          <label htmlFor='adiposité'>Adiposité</label>
           <input
             type='text'
             name='adiposité'
@@ -87,15 +104,17 @@ export default function AddBird() {
             onChange={(e) => setBird({ ...bird, adiposity: e.target.value })}
           />
 
-          <label for='sexe'>Sexe</label>
-          <input
-            type='text'
-            name='sexe'
-            id='sexe'
-            onChange={(e) => setBird({ ...bird, sex: e.target.value })}
-          />
+          <label htmlFor='sex'>Sexe</label>
+          <select
+            name='sex'
+            id='sex'
+            onChange={(e) => setBird({ ...bird, sex: e.target.value })}>
+            <option value=''>Choisir une option</option>
+            <option value='mâle'>Mâle</option>
+            <option value='femelle'>Femelle</option>
+          </select>
 
-          <label for='age'>Âge</label>
+          <label htmlFor='age'>Âge</label>
           <input
             type='text'
             name='age'

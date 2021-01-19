@@ -11,7 +11,9 @@ export default function AuthForm() {
     idSc: '',
     lastName: '',
     name: '',
-    places: { 'nom de place': 'valeure' },
+    places: {
+      /* 'nom de place': 'valeure' */
+    },
     captures: [],
   })
   const handleSubmit = (e) => {
@@ -34,7 +36,6 @@ export default function AuthForm() {
     firebase.database().ref(`users/${currentUser.user.uid}`).set(userDatas)
   }
   if (currentUser) {
-    console.log(currentUser.user)
     writeUserData(userDatas)
   }
   return (

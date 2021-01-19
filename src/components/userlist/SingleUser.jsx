@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function SingleUser(props) {
   const user = props.singleUser
+
+  let nbrCaptures = 0
+  for (let key in user.captures) {
+    nbrCaptures++
+  }
+
+  /* console.log(user.captures ? user.captures.size : 'pas de captures') */
   return (
     <li>
       <h3>{`${user.name} ${user.lastName}`}</h3>
@@ -15,8 +22,8 @@ export default function SingleUser(props) {
             <li>EN COURS DE TAF</li>
           </ul>
         </dd>
-        <dt>Captures</dt>
-        <dd>EN COURS DE TAF</dd>
+        <dt>Nombre de captures</dt>
+        <dd>{nbrCaptures}</dd>
       </dl>
     </li>
   )
