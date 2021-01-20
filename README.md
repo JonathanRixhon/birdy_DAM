@@ -1,5 +1,7 @@
-#
+# Birdy-Developpement d'applications mobiles
 
-Birdy-Developpement d'applications mobiles
+## Dépendances
 
-## Test
+*firebase
+*React router
+\*geolib
