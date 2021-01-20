@@ -2,6 +2,8 @@
 
 ## Dépendances
 
-*firebase
-*React router
-\*geolib
+- firebase
+
+- React
+
+- geolib
