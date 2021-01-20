@@ -6,6 +6,7 @@ export default function LogInForm() {
   const [currentUser, setCurrentUser] = useContext(UserAuthContext)
   const [mail, setMail] = useState('')
   const [pass, setPass] = useState('')
+  const [error, setError] = useState()
   const handleSubmit = (e) => {
     e.preventDefault()
     firebase
@@ -17,15 +18,34 @@ export default function LogInForm() {
       .catch((error) => {
         var errorCode = error.code
         var errorMessage = error.message
-        console.log(errorMessage)
+        /* setError(error.code) */
+        switch (errorCode) {
+          case 'auth/wrong-password':
+            setError('Mot de passe incorrect')
+            break
+          case 'auth/internal-error':
+            setError(
+              "Le serveur d'authentification a rencontré une erreur inattendue lors de la tentative de traitement de la demande."
+            )
+            break
+          case 'auth/user-not-found':
+            setError('Adresse email inconnue')
+            break
+          case 'auth/invalid-email':
+            setError("Format d'aresse mail invalide")
+            break
+
+          default:
+            break
+        }
       })
   }
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
+      {error ? <p className='error'>{error}</p> : null}
       <label htmlFor='email'>Email</label>
       <input type='text' id='email' onChange={(e) => setMail(e.target.value)} />
-
       <label htmlFor='pass'>Password</label>
       <input
         type='password'

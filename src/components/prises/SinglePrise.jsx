@@ -1,14 +1,38 @@
 import React, { Fragment, useContext, useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { PrisesContext } from '../../contexts/PrisesContext'
+import { UserAuthContext } from '../../contexts/UserAuthContext'
+import firebase from '../../utils/firebaseConfig'
 
 export default function SinglePrise() {
   const birdIndex = useLocation().state.index
   const [prises, setPrises] = useContext(PrisesContext)
-  let currentBird
-  if (prises) {
-    currentBird = prises[birdIndex]
-    console.log(prises[birdIndex])
+  const [currentUser, setCurrentUser] = useContext(UserAuthContext)
+  const [isDeleted, setIsDeleted] = useState()
+  let dbDate, currentBird
+
+  if (!isDeleted) {
+    if (prises) {
+      currentBird = prises[birdIndex]
+      dbDate = new Date(currentBird.date).toLocaleString('fr-FR', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    }
+  }
+  const handleDelete = (e) => {
+    e.preventDefault(e)
+    setIsDeleted(true)
+    firebase
+      .database()
+      .ref(`users/${currentUser.uid}/captures/${currentBird.id}`)
+      .remove()
+  }
+  if (isDeleted) {
+    return <Redirect to={{ pathname: '/' }} />
   }
   return (
     <Fragment>
@@ -16,6 +40,7 @@ export default function SinglePrise() {
       {prises ? (
         <section>
           <h3>{currentBird.name}</h3>
+          <button onClick={(e) => handleDelete(e)}>Supprimer</button>
           <article>
             <h4>Informations générales</h4>
             <dl>
@@ -30,7 +55,7 @@ export default function SinglePrise() {
               </dd>
               <dt>Date</dt>
               <dd>
-                <time>{currentBird.date}</time>
+                <time dateTime={currentBird.date}>{dbDate}</time>
               </dd>
               <dt>Technique</dt>
               <dd>{currentBird.technique}</dd>
@@ -46,7 +71,7 @@ export default function SinglePrise() {
             <h4>Informations sur la prise</h4>
             <dl>
               <dt>Nom latin</dt>
-              <dd>Accipitus nisus</dd>
+              <dd>{currentBird.latinName}</dd>
               <dt>Charge alaire</dt>
               <dd>{currentBird.charge}</dd>
               <dt>Sexe</dt>

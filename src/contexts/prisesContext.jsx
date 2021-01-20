@@ -21,7 +21,7 @@ export const PrisesProvider = (props) => {
         const arrayPrises = []
         for (let singleElement in data.users[currentUser.uid].captures) {
           arrayPrises.push({
-            id: currentUser.uid,
+            id: singleElement,
             ...data.users[currentUser.uid].captures[singleElement],
           })
         }

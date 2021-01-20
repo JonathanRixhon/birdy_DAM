@@ -1,8 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function SinglePrise(props) {
+export default function itemPrise(props) {
   const prise = props.capture
+  const dbDate = new Date(prise.date).toLocaleString('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
   return (
     <li>
       <h3>{prise.name}</h3>
@@ -11,7 +17,7 @@ export default function SinglePrise(props) {
         alt=''
       />
       <p>
-        Le <time dateTime={prise.date}>{prise.date}</time>
+        Le <time dateTime={prise.date}>{dbDate}</time>
       </p>
       <dl>
         <dt>Lieu</dt>

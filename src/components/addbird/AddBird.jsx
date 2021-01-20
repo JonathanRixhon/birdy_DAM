@@ -6,6 +6,8 @@ import * as geolib from 'geolib'
 
 export default function AddBird() {
   const [submited, setSubmited] = useState()
+  /* const [error, setError] = useState() */
+  let error, geolocError
 
   const [currentUser, setCurrentUser] = useContext(UserAuthContext)
   const [bird, setBird] = useState({})
@@ -23,8 +25,8 @@ export default function AddBird() {
     }
   }
 
-  const errorHandler = (error) => {
-    console.log(error)
+  const errorHandler = (locError) => {
+    geolocError = locError
   }
 
   const geolocate = (e) => {
@@ -32,19 +34,70 @@ export default function AddBird() {
     navigator.geolocation.getCurrentPosition(setLocation, errorHandler)
   }
 
+  if (!bird.date) {
+    let currentDate = new Date().toISOString().slice(0, 10)
+    setBird({ ...bird, date: currentDate })
+    console.log(currentDate)
+  }
+  /* let error */
+  const inputValidation = () => {
+    if (!bird.age) {
+      error = "Entrez l'âge'."
+    }
+    if (!bird.sex) {
+      error = 'Selectionnez un sexe.'
+    }
+    if (!bird.adiposity) {
+      error = "Entrez une valeure valide pour l'adiposité"
+    }
+    if (!bird.weight) {
+      error = 'Entrez une valeure valide pour le poids'
+    }
+    if (!bird.charge) {
+      error = 'Entrez une valeure valide pour la charge calaire'
+    }
+    if (!bird.latinName) {
+      error = "Entrez le nom latin de l'oiseau."
+    }
+    if (!bird.ringNumber) {
+      error = 'Entrez un numéro de bague.'
+    }
+    if (!bird.technique) {
+      error = 'Selectionnez une technique.'
+    }
+    if (!bird.place) {
+      error = 'Entrez des coordonnées géographiques.'
+    } else {
+      if (!bird.place.longitude) {
+        error = 'Entrez une longitude.'
+      } else if (!bird.place.latitude) {
+        error = 'Entrez une latitude.'
+      }
+    }
+    if (!bird.name) {
+      error = "Entrez un nom d'oiseau."
+    }
+  }
   const handleSubmit = (e) => {
     e.preventDefault()
-    setSubmited(true)
-    firebase.database().ref(`users/${currentUser.uid}/captures`).push(bird)
-    console.log(e)
+    inputValidation()
+    console.log(error)
+    if (!error) {
+      firebase.database().ref(`users/${currentUser.uid}/captures`).push(bird)
+      setSubmited(true)
+    }
   }
   if (submited) {
     return <Redirect to={{ pathname: '/' }} />
   }
 
-  console.log(bird)
   return (
     <Fragment>
+      {error ? (
+        <p>
+          <i>{error}</i>
+        </p>
+      ) : null}
       <h2>Ajouter un oiseau</h2>
       <form onSubmit={(e) => handleSubmit(e)}>
         <fieldset>
@@ -56,9 +109,9 @@ export default function AddBird() {
             id='nom'
             onChange={(e) => setBird({ ...bird, name: e.target.value })}
           />
-
           <fieldset>
             <legend>Lieu</legend>
+            {geolocError ? <p>geolocError</p> : null}
             <label htmlFor='longitude'>Longitude</label>
             <input
               type='text'
@@ -68,7 +121,10 @@ export default function AddBird() {
               onChange={(e) =>
                 setBird({
                   ...bird,
-                  place: { ...bird.place, longitude: e.target.value },
+                  place: {
+                    ...bird.place,
+                    longitude: parseFloat(e.target.value),
+                  },
                 })
               }
             />
@@ -81,7 +137,10 @@ export default function AddBird() {
               onChange={(e) =>
                 setBird({
                   ...bird,
-                  place: { ...bird.place, latitude: e.target.value },
+                  place: {
+                    ...bird.place,
+                    latitude: parseFloat(e.target.value),
+                  },
                 })
               }
             />
@@ -133,7 +192,9 @@ export default function AddBird() {
             type='chargealaire'
             name='chargealaire'
             id='chargealaire'
-            onChange={(e) => setBird({ ...bird, charge: e.target.value })}
+            onChange={(e) =>
+              setBird({ ...bird, charge: parseFloat(e.target.value) })
+            }
           />
 
           <label htmlFor='poids'>Poids</label>
@@ -141,7 +202,9 @@ export default function AddBird() {
             type='text'
             name='poids'
             id='poids'
-            onChange={(e) => setBird({ ...bird, weight: e.target.value })}
+            onChange={(e) =>
+              setBird({ ...bird, weight: parseFloat(e.target.value) })
+            }
           />
 
           <label htmlFor='adiposité'>Adiposité</label>
@@ -149,7 +212,9 @@ export default function AddBird() {
             type='text'
             name='adiposité'
             id='adiposité'
-            onChange={(e) => setBird({ ...bird, adiposity: e.target.value })}
+            onChange={(e) =>
+              setBird({ ...bird, adiposity: parseFloat(e.target.value) })
+            }
           />
 
           <label htmlFor='sex'>Sexe</label>
@@ -167,7 +232,9 @@ export default function AddBird() {
             type='text'
             name='age'
             id='age'
-            onChange={(e) => setBird({ ...bird, age: e.target.value })}
+            onChange={(e) =>
+              setBird({ ...bird, age: parseFloat(e.target.value) })
+            }
           />
         </fieldset>
 

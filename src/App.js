@@ -6,11 +6,15 @@ import firebase from './utils/firebaseConfig'
 import { UserAuthContext } from './contexts/UserAuthContext'
 import { UserListProvider } from './contexts/UserListContext'
 import { PrisesProvider } from './contexts/PrisesContext'
+import { EncycloProvider } from './contexts/EncycloContext'
 /* Components */
-import Nav from './components/userlist/Nav'
+import Nav from './components/Nav'
+import LogOutNav from './components/LogOutNav'
 import LogIn from './components/LogIn'
 import SignUp from './components/authentification/SignUp'
 import Home from './components/Home'
+import Encyclopedie from './components/encyclopedie/Encyclopedie'
+import SingleBird from './components/encyclopedie/SingleBird'
 import UserList from './components/userlist/UserList'
 import AddBird from './components/addbird/AddBird'
 import Prises from './components/prises/Prises'
@@ -22,11 +26,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <header>
-        <h1>Birdy</h1>
-        {currentUser ? <Nav /> : <p>coucou</p>}
-        <button onClick={() => firebase.auth().signOut()}>Déconnexion</button>
-      </header>
+      <header>{currentUser ? <Nav /> : <LogOutNav />}</header>
       {currentUser ? (
         <Redirect to={{ pathname: '/' }} />
       ) : (
@@ -56,6 +56,16 @@ function App() {
           <PrisesProvider>
             <SinglePrise />
           </PrisesProvider>
+        </Route>
+        <Route path='/encyclopedie' exact>
+          <EncycloProvider>
+            <Encyclopedie />
+          </EncycloProvider>
+        </Route>
+        <Route path='/encyclopedie/:idBird' exact>
+          <EncycloProvider>
+            <SingleBird />
+          </EncycloProvider>
         </Route>
       </Switch>
     </BrowserRouter>

@@ -3,18 +3,29 @@ import ItemPrise from './ItemPrise'
 import { PrisesContext } from '../../contexts/PrisesContext'
 export default function MesPrises() {
   const [prises, setPrises] = useContext(PrisesContext)
-  return (
-    <Fragment>
-      <h2>Mes prises</h2>
-      {prises ? (
-        <ul>
-          {prises.map((prise, index) => (
-            <ItemPrise key={index} capture={prise} number={index} />
-          ))}
-        </ul>
-      ) : (
-        <h3>Chargement</h3>
-      )}
-    </Fragment>
-  )
+  if (!prises) {
+    return (
+      <Fragment>
+        <h2>Mes prises</h2>
+        <p>Chargement</p>
+      </Fragment>
+    )
+  } else {
+    const nbPrises = prises.length
+    console.log(nbPrises)
+    return (
+      <Fragment>
+        <h2>Mes prises</h2>
+        {nbPrises ? (
+          <ul>
+            {prises.map((prise, index) => (
+              <ItemPrise key={index} capture={prise} number={index} />
+            ))}
+          </ul>
+        ) : (
+          <p>Vous n'avez toujours pas de prise! Il est temps de s'y mettre</p>
+        )}
+      </Fragment>
+    )
+  }
 }
