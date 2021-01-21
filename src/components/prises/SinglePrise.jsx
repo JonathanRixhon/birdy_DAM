@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import { PrisesContext } from '../../contexts/PrisesContext'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
@@ -9,10 +9,10 @@ export default function SinglePrise() {
   const birdIndex = useLocation().state.index
   const [prises, setPrises] = useContext(PrisesContext)
   const [currentUser, setCurrentUser] = useContext(UserAuthContext)
-  const [isDeleted, setIsDeleted] = useState()
+  const [action, setAction] = useState()
   let dbDate, currentBird
 
-  if (!isDeleted) {
+  if (!action) {
     if (prises) {
       currentBird = prises[birdIndex]
       dbDate = new Date(currentBird.date).toLocaleString('fr-FR', {
@@ -25,13 +25,18 @@ export default function SinglePrise() {
   }
   const handleDelete = (e) => {
     e.preventDefault(e)
-    setIsDeleted(true)
+    setAction('delete')
     firebase
       .database()
       .ref(`users/${currentUser.uid}/captures/${currentBird.id}`)
       .remove()
   }
-  if (isDeleted) {
+  const handleModify = (e) => {
+    e.preventDefault()
+    setAction('modify')
+  }
+
+  if (action === 'delete') {
     return <Redirect to={{ pathname: '/' }} />
   }
   return (
@@ -41,6 +46,14 @@ export default function SinglePrise() {
         <section>
           <h3>{currentBird.name}</h3>
           <button onClick={(e) => handleDelete(e)}>Supprimer</button>
+          <Link
+            to={{
+              pathname: `/modifier/${currentBird.id}`,
+              state: { bird: currentBird },
+            }}>
+            Modifier
+          </Link>
+
           <article>
             <h4>Informations générales</h4>
             <dl>

@@ -42,14 +42,20 @@ export default function LogInForm() {
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      {error ? <p className='error'>{error}</p> : null}
-      <label htmlFor='email'>Email</label>
-      <input type='text' id='email' onChange={(e) => setMail(e.target.value)} />
-      <label htmlFor='pass'>Password</label>
+    <form className='loginForm' onSubmit={(e) => handleSubmit(e)}>
+      {error ? <p className='alert'>{error}</p> : null}
+      <label htmlFor='email'>Adresse mail</label>
+      <input
+        type='text'
+        id='email'
+        placeholder='Entrez votre adresse mail'
+        onChange={(e) => setMail(e.target.value)}
+      />
+      <label htmlFor='pass'>Mot de passe </label>
       <input
         type='password'
         id='pass'
+        placeholder='Entrez votre mot de passe'
         onChange={(e) => setPass(e.target.value)}
       />
 

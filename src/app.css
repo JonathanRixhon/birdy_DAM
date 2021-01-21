@@ -1,9 +1,128 @@
+:root {
+  box-sizing: border-box;
+}
+* {
+  box-sizing: inherit;
+}
+body {
+  max-width: 82.72327965%;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
 label {
   display: block;
 }
 input {
   display: block;
 }
-.error {
-  color: red;
+html {
+  background-color: #e5ebef;
+  color: #526772;
+}
+/* Header */
+
+header h1 {
+  grid-area: head;
+}
+header {
+  margin: 1em auto 1.25em;
+  border-bottom: 1px solid #526772;
+  display: grid;
+  justify-content: center;
+  gap: 1em;
+  grid-template-columns: repeat(4, 18.9380530975%);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: 'head head head .' 'nav nav nav nav';
+  grid-gap: 1em;
+  max-width: 79.98228521%;
+}
+header a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.25em;
+}
+header nav ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+header nav {
+  grid-area: nav;
+  align-self: center;
+}
+h1 {
+  font-size: 2.1875em;
+}
+.visually-hidden {
+  position: absolute !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+.buttonLink {
+  display: block;
+  max-width: 48.67256637%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1.5em 1em;
+  border-radius: 0.5em;
+  color: #fbc072;
+  background-color: #526772;
+  text-decoration: none;
+}
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+header button {
+  align-self: center;
+  margin: 0;
+}
+/* Button */
+input,
+select,
+button,
+.buttonLink {
+  border: 1px solid #526772;
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0.5em;
+  border-radius: 8px;
+}
+input[type='submit'],
+button,
+.buttonLinkImportant {
+  background-color: #526772;
+  color: #fbc072;
+}
+
+/* home */
+h2 {
+  font-size: 2.1875em;
+  line-height: 1.3428571429em;
+  margin-bottom: 0.5em;
+}
+legend {
+  font-size: 1.25em;
+  line-height: 1.35em;
+}
+label {
+  font-size: 1.0625em;
+  line-height: 1.2941176471em;
+  margin-bottom: 0.2941176471em;
+}
+
+::placeholder {
+  font-size: 0.75em;
+  line-height: 1.3333333333em;
+}
+/* AddbirdForm */
+
+.alert i {
+  font-style: italic;
+  color: crimson;
 }

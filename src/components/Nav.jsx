@@ -6,8 +6,9 @@ export default function Nav() {
   return (
     <Fragment>
       <h1>Birdy</h1>
+      <button onClick={() => firebase.auth().signOut()}>Déconnexion</button>
       <nav>
-        <h2>Navigation principale</h2>
+        <h2 className='visually-hidden'>Navigation principale</h2>
         <ul>
           <li>
             <Link to='/'>Acceuil</Link>
@@ -23,7 +24,6 @@ export default function Nav() {
           </li>
         </ul>
       </nav>
-      <button onClick={() => firebase.auth().signOut()}>Déconnexion</button>
     </Fragment>
   )
 }
