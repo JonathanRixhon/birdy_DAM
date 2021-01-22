@@ -40,7 +40,7 @@ export default function SinglePrise() {
     return <Redirect to={{ pathname: '/' }} />
   }
   return (
-    <Fragment>
+    <main>
       <h2>Mes prises</h2>
       {prises ? (
         <section>
@@ -101,6 +101,6 @@ export default function SinglePrise() {
       ) : (
         <h3>Chargement</h3>
       )}
-    </Fragment>
+    </main>
   )
 }

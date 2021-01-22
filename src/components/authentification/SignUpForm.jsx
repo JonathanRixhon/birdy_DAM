@@ -72,13 +72,18 @@ export default function AuthForm() {
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      {error ? <p className='error'>{error}</p> : null}
+    <form className='signUpForm' onSubmit={(e) => handleSubmit(e)}>
+      {error ? (
+        <p className='alert'>
+          <i>{error}</i>
+        </p>
+      ) : null}
 
       <fieldset>
         <legend>Identification</legend>
         <label htmlFor='email'>Adresse mail</label>
         <input
+          placeholder='Adresse mail'
           type='text'
           id='email'
           onChange={(e) => setMail(e.target.value)}
@@ -86,15 +91,17 @@ export default function AuthForm() {
 
         <label htmlFor='pass'>Mot de passe</label>
         <input
+          placeholder='Mot de passe'
           type='password'
           id='pass'
           onChange={(e) => setPass(e.target.value)}
         />
       </fieldset>
       <fieldset>
-        <legend>Informations personelles</legend>
+        <legend>Informations personnelles</legend>
         <label htmlFor='lastname'>Nom</label>
         <input
+          placeholder='Nom'
           type='text'
           id='lastname'
           onChange={(e) =>
@@ -104,6 +111,7 @@ export default function AuthForm() {
 
         <label htmlFor='name'>Prénom</label>
         <input
+          placeholder='Prénom'
           type='text'
           id='name'
           onChange={(e) => setUserDatas({ ...userDatas, name: e.target.value })}
@@ -113,12 +121,13 @@ export default function AuthForm() {
           Identifiant de l'institut des sciences
         </label>
         <input
+          placeholder='Identifiant'
           type='text'
           id='idSciences'
           onChange={(e) => setUserDatas({ ...userDatas, idSc: e.target.value })}
         />
       </fieldset>
-      <input type='submit' />
+      <input type='submit' value="S'inscrire" className='bigButton' />
     </form>
   )
 }

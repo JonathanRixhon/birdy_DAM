@@ -1,0 +1,59 @@
+.encyclopedie h2 {
+  margin-bottom: 0.5714285714em;
+}
+.encyclopedie li {
+  background-color: #526772;
+  color: #e5ebef;
+  border-radius: 0.5em;
+  margin-bottom: 0.9375em;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 7.7em;
+  align-items: center;
+  justify-items: center;
+  align-self: auto;
+  grid-gap: 0 2.54424779%;
+}
+.encyclopedie h3 {
+  font-size: 1.25em;
+  line-height: 1.35em;
+  font-weight: 600;
+  margin-top: 1em;
+  justify-self: start;
+  align-self: start;
+  grid-column: 2 / -2;
+  grid-row: 1;
+}
+.encyclopedie dl {
+  grid-column: 2 / -2;
+  grid-row: 1;
+  margin-bottom: 1.25em;
+  justify-self: start;
+  align-self: end;
+}
+.encyclopedie .latinName {
+  display: block;
+  font-style: italic;
+}
+.encyclopedie img {
+  order: -1;
+  align-self: stretch;
+  object-position: center;
+  object-fit: cover;
+}
+.encyclopedie dl dd {
+  display: inline;
+  line-height: 1.35em;
+  font-size: 1.25em;
+  letter-spacing: -1px;
+}
+.encyclopedie dd:nth-of-type(n + 3)::before {
+  content: ' | ';
+}
+/* * {
+  background-color: red;
+}
+ */
+.singlebird {
+}

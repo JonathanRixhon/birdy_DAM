@@ -32,7 +32,7 @@ export default function LogInForm() {
             setError('Adresse email inconnue')
             break
           case 'auth/invalid-email':
-            setError("Format d'aresse mail invalide")
+            setError("Format d'adresse mail invalide")
             break
 
           default:
@@ -43,7 +43,11 @@ export default function LogInForm() {
 
   return (
     <form className='loginForm' onSubmit={(e) => handleSubmit(e)}>
-      {error ? <p className='alert'>{error}</p> : null}
+      {error ? (
+        <p className='alert'>
+          <i>{error}</i>
+        </p>
+      ) : null}
       <label htmlFor='email'>Adresse mail</label>
       <input
         type='text'
@@ -59,7 +63,7 @@ export default function LogInForm() {
         onChange={(e) => setPass(e.target.value)}
       />
 
-      <input type='submit' />
+      <input type='submit' value='Se connecter' className='bigButton' />
     </form>
   )
 }

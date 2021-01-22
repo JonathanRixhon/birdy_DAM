@@ -1,0 +1,17 @@
+.signupPage {
+  width: 38.9380531%;
+  margin: 0 auto;
+}
+.signUpForm input {
+  margin-bottom: 0.5882352941em;
+  width: 100%;
+}
+.signUpForm legend {
+  margin-bottom: 0.5em;
+}
+.signUpForm fieldset {
+  margin-bottom: 0.3125em;
+}
+.signUpForm input[type='submit'] {
+  margin: 0.2941176471em 0 0.2941176471em;
+}

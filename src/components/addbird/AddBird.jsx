@@ -3,7 +3,7 @@ import firebase from '../../utils/firebaseConfig'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
 import { Redirect } from 'react-router-dom'
 import * as geolib from 'geolib'
-import '../styles/addBird.css'
+import '../../styles/addBird.css'
 export default function AddBird() {
   const [submited, setSubmited] = useState()
   const [defError, setDefError] = useState()
@@ -77,7 +77,7 @@ export default function AddBird() {
     return <Redirect to={{ pathname: '/' }} />
   }
   return (
-    <Fragment>
+    <main className='addBird'>
       <h2>Ajouter un oiseau</h2>
       {defError ? (
         <p className='alert'>
@@ -247,8 +247,8 @@ export default function AddBird() {
           </div>
         </fieldset>
 
-        <button>Ajouter</button>
+        <button className='bigButton buttonLink'>Ajouter</button>
       </form>
-    </Fragment>
+    </main>
   )
 }

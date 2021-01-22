@@ -14,7 +14,7 @@ export default function MesPrises() {
     const nbPrises = prises.length
     console.log(nbPrises)
     return (
-      <Fragment>
+      <main>
         <h2>Mes prises</h2>
         {nbPrises ? (
           <ul>
@@ -25,7 +25,7 @@ export default function MesPrises() {
         ) : (
           <p>Vous n'avez toujours pas de prise! Il est temps de s'y mettre</p>
         )}
-      </Fragment>
+      </main>
     )
   }
 }

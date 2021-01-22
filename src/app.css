@@ -1,14 +1,20 @@
 :root {
   box-sizing: border-box;
+  font-size: 100%;
 }
 * {
   box-sizing: inherit;
 }
 body {
+  min-height: calc(100vh - 2em);
   max-width: 82.72327965%;
   margin: 0 auto;
   font-family: 'Segoe UI', sans-serif;
 }
+main {
+  padding-bottom: 1em;
+}
+
 label {
   display: block;
 }
@@ -19,8 +25,8 @@ html {
   background-color: #e5ebef;
   color: #526772;
 }
-/* Header */
 
+/* Header */
 header h1 {
   grid-area: head;
 }
@@ -57,72 +63,91 @@ h1 {
   position: absolute !important;
   border: 0 !important;
   height: 1px !important;
-  width: 1px !important;
+  max-width: 1px !important;
   padding: 0 !important;
   overflow: hidden !important;
   clip: rect(0, 0, 0, 0) !important;
 }
-.buttonLink {
-  display: block;
-  max-width: 48.67256637%;
-  text-align: center;
-  margin: 0 auto;
-  padding: 1.5em 1em;
-  border-radius: 0.5em;
-  color: #fbc072;
-  background-color: #526772;
-  text-decoration: none;
-}
+
 main {
-  width: 80%;
+  max-width: 80%;
   margin: 0 auto;
 }
 header button {
   align-self: center;
   margin: 0;
 }
-/* Button */
+/* reset Button */
 input,
 select,
 button,
 .buttonLink {
-  border: 1px solid #526772;
+  color: inherit;
+  line-height: 1em;
+  border: none;
   background-image: none;
   background-color: transparent;
   box-shadow: none;
-  padding: 0.5em;
-  border-radius: 8px;
+  border-radius: 0.5em;
 }
-input[type='submit'],
-button,
-.buttonLinkImportant {
+/* Style button */
+.specialButton {
+  line-height: 1em;
+  font-size: 1.0625em;
+  border: 2px solid #fbc072;
+  text-align: center;
+  /* display: block; */
+  color: #fbc072;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+}
+input,
+select,
+.buttonLink {
+  font-size: 1.0625em;
+  padding: 0.5em;
+  border: 1px solid #526772;
+}
+
+.buttonLink {
+  border: 2px solid #526772;
+  font-size: 1.0625em;
+  color: #526772;
+  display: block;
+  text-align: center;
+  border-radius: 0.5em;
+  text-decoration: none;
+}
+.bigButton {
+  font-size: 1.0625em;
   background-color: #526772;
   color: #fbc072;
 }
-
-/* home */
+::placeholder {
+  font-size: 0.75em;
+  line-height: 1.3333333333em;
+}
+/* label */
 h2 {
+  /* 35px */
   font-size: 2.1875em;
   line-height: 1.3428571429em;
-  margin-bottom: 0.5em;
-}
-legend {
-  font-size: 1.25em;
-  line-height: 1.35em;
 }
 label {
   font-size: 1.0625em;
   line-height: 1.2941176471em;
   margin-bottom: 0.2941176471em;
 }
-
-::placeholder {
-  font-size: 0.75em;
-  line-height: 1.3333333333em;
-}
-/* AddbirdForm */
-
-.alert i {
+/* autres */
+.alert {
+  font-size: 0.875em;
+  margin-bottom: 0.7142857143em;
   font-style: italic;
   color: crimson;
+}
+
+legend {
+  font-size: 1.25em;
+  line-height: 1.35em;
 }

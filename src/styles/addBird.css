@@ -7,7 +7,6 @@
 .addBirdForm fieldset {
   display: contents;
 }
-
 .addBirdForm div {
   margin-bottom: 0;
   grid-column: span 2;
@@ -22,13 +21,8 @@
 }
 .addBirdForm button {
   grid-column: span 4;
-  margin-bottom: 2em;
+  margin-top: 0.5882352941em;
 }
 .placeForm a {
   grid-column: 2 / span 2;
-  text-align: center;
-  text-decoration: none;
-  align-self: center;
-  background-color: transparent;
-  color: #526772;
 }

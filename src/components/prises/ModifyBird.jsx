@@ -80,7 +80,7 @@ export default function AddBird() {
     return <Redirect to={{ pathname: '/mes_prises' }} />
   }
   return (
-    <Fragment>
+    <main>
       <h2>Ajouter un oiseau</h2>
       {defError ? (
         <p>
@@ -260,6 +260,6 @@ export default function AddBird() {
 
         <button>Modifier</button>
       </form>
-    </Fragment>
+    </main>
   )
 }

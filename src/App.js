@@ -33,48 +33,47 @@ function App() {
       ) : (
         <Redirect to={{ pathname: '/connexion' }} />
       )}
-      <main>
-        <Switch>
-          <Route path='/' component={Home} exact />
-          <Route path='/connexion' component={LogIn} exact />
-          <Route path='/inscription' component={SignUp} exact />
-          <Route path='/utilisateurs' exact>
-            <UserListProvider>
-              <UserList />
-            </UserListProvider>
-          </Route>
-          <Route path='/ajouter_un_oiseau' exact>
-            <UserListProvider>
-              <AddBird />
-            </UserListProvider>
-          </Route>
-          <Route path='/mes_prises' exact>
-            <PrisesProvider>
-              <Prises />
-            </PrisesProvider>
-          </Route>
-          <Route path='/mes_prises/:id_capture' exact>
-            <PrisesProvider>
-              <SinglePrise />
-            </PrisesProvider>
-          </Route>
-          <Route path='/modifier/:idBird' exact>
-            <PrisesProvider>
-              <ModifyBird />
-            </PrisesProvider>
-          </Route>
-          <Route path='/encyclopedie' exact>
-            <EncycloProvider>
-              <Encyclopedie />
-            </EncycloProvider>
-          </Route>
-          <Route path='/encyclopedie/:idBird' exact>
-            <EncycloProvider>
-              <SingleBird />
-            </EncycloProvider>
-          </Route>
-        </Switch>
-      </main>
+
+      <Switch>
+        <Route path='/' component={Home} exact />
+        <Route path='/connexion' component={LogIn} exact />
+        <Route path='/inscription' component={SignUp} exact />
+        <Route path='/utilisateurs' exact>
+          <UserListProvider>
+            <UserList />
+          </UserListProvider>
+        </Route>
+        <Route path='/ajouter_un_oiseau' exact>
+          <UserListProvider>
+            <AddBird />
+          </UserListProvider>
+        </Route>
+        <Route path='/mes_prises' exact>
+          <PrisesProvider>
+            <Prises />
+          </PrisesProvider>
+        </Route>
+        <Route path='/mes_prises/:id_capture' exact>
+          <PrisesProvider>
+            <SinglePrise />
+          </PrisesProvider>
+        </Route>
+        <Route path='/modifier/:idBird' exact>
+          <PrisesProvider>
+            <ModifyBird />
+          </PrisesProvider>
+        </Route>
+        <Route path='/encyclopedie' exact>
+          <EncycloProvider>
+            <Encyclopedie />
+          </EncycloProvider>
+        </Route>
+        <Route path='/encyclopedie/:idBird' exact>
+          <EncycloProvider>
+            <SingleBird />
+          </EncycloProvider>
+        </Route>
+      </Switch>
     </BrowserRouter>
   )
 }

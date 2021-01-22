@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useContext } from 'react'
 import { EncycloContext } from '../../contexts/EncycloContext'
 import EncycloItemList from './EncycloItemList'
-
+import '../../styles/encyclopedie.css'
 export default function Encyclopedie() {
   const [encyclopedie, setEncyclopedie] = useContext(EncycloContext)
   return (
-    <Fragment>
+    <main className='encyclopedie'>
       {encyclopedie ? (
         <Fragment>
           <h2>Encyclopédie</h2>
@@ -18,6 +18,6 @@ export default function Encyclopedie() {
       ) : (
         <h2>Chargement</h2>
       )}
-    </Fragment>
+    </main>
   )
 }

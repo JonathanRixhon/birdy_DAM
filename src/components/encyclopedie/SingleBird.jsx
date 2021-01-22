@@ -22,7 +22,7 @@ export default function SingleBird() {
   /* l'encyclopedie est undefined apre un reload. pourquoi ? */
   const category = 'encyclopedie'
   return (
-    <Fragment>
+    <main className='singleBird'>
       {encyclopedie[0] ? (
         <Fragment>
           <h2>Encyclopedie</h2>
@@ -45,6 +45,6 @@ export default function SingleBird() {
           <h3>Chargement</h3>
         </Fragment>
       )}
-    </Fragment>
+    </main>
   )
 }
