@@ -19,7 +19,7 @@ export default function itemPrise(props) {
       <p>
         Le <time dateTime={prise.date}>{dbDate}</time>
       </p>
-      <dl>
+      <dl className='visually-hidden'>
         <dt>Lieu</dt>
         <dd>
           <dl>
@@ -31,11 +31,12 @@ export default function itemPrise(props) {
         </dd>
       </dl>
 
-      <dl>
+      <dl className='ringNumber'>
         <dt>Numéro de bague</dt>
         <dd>{prise.ringNumber}</dd>
       </dl>
       <Link
+        className='specialButton'
         to={{
           pathname: `/mes_prises/${prise.id}`,
           state: { birdId: prise.id, index: props.number },

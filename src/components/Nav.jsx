@@ -6,7 +6,9 @@ export default function Nav() {
   return (
     <Fragment>
       <h1>Birdy</h1>
-      <button onClick={() => firebase.auth().signOut()}>Déconnexion</button>
+      <button className='bigButton' onClick={() => firebase.auth().signOut()}>
+        Déconnexion
+      </button>
       <nav>
         <h2 className='visually-hidden'>Navigation principale</h2>
         <ul>

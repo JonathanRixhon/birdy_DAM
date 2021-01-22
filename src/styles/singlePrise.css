@@ -1,0 +1,58 @@
+.singlePrise h3 {
+  font-size: 1.875em;
+  font-weight: lighter;
+  line-height: 1.3666666667em;
+  margin-bottom: 0.5em;
+
+  grid-column: span 4;
+}
+.singlePrise section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0 1.5em;
+}
+/* .buttonLink {
+    grid-column: span 2;
+ 
+} */
+.singlePrise .general {
+  grid-column: span 4;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0 1.5em;
+  justify-items: stretch;
+}
+.singlePrise h4 {
+  font-size: 1.25em;
+  line-height: 1.35em;
+  grid-column: span 4;
+}
+.singlePrise .general dl {
+  grid-column: span 2;
+}
+.singlePrise .general img {
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+  grid-column: span 2;
+}
+.singlePrise article + article {
+  grid-column: span 4;
+}
+
+.singlePrise dt {
+  font-size: 1.0625em;
+  line-height: 1.2941176471em;
+}
+.singlePrise dd {
+  font-size: 0.875em;
+  line-height: 1.2941176471em;
+}
+.singlePrise .buttonLink {
+  grid-column: span 2;
+}
+.singlePrise .general > dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 5.4545454545%;
+}

@@ -48,12 +48,60 @@
   font-size: 1.25em;
   letter-spacing: -1px;
 }
-.encyclopedie dd:nth-of-type(n + 3)::before {
+.encyclopedie dd:nth-of-type(n + 3)::before,
+.singleBird dd:nth-of-type(n + 3)::before {
   content: ' | ';
 }
 /* * {
   background-color: red;
 }
  */
-.singlebird {
+
+.singleBird h3 {
+  /* 35px */
+  font-weight: lighter;
+  font-size: 1.875em;
+  line-height: 1.3333333333em;
+}
+.singleBird dd {
+  font-size: 1.25em;
+}
+.singleBird .latinName {
+  font-style: italic;
+  display: block;
+}
+.singleBird dd {
+  display: inline;
+}
+.singleBird .systematique,
+.singleBird h3 {
+  text-align: right;
+}
+.singleBird section {
+  grid-gap: 0 2.6548672566%;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 2.5em 4.3125em;
+}
+.singleBird .systematique,
+h3 {
+  grid-column: 1;
+}
+.singleBird img {
+  grid-column: 2 /-1;
+  grid-row: 1 / span 3;
+  object-fit: cover;
+  object-position: center;
+  min-width: 100%;
+  height: auto;
+  border-radius: 0.5em;
+}
+.singleBird .description {
+  grid-column: span 2;
+  margin-top: 0.9375em;
+}
+.singleBird p {
+  font-size: 1.25em;
+  line-height: 1.35em;
 }

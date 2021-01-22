@@ -1,0 +1,34 @@
+.userList h2 {
+  margin-bottom: 0.5714285714em;
+}
+.userList .itemList {
+  margin-bottom: 0.625em;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  grid-gap: 1.5em;
+  border-bottom: 1px solid #5267729d;
+  padding-bottom: 0.625em;
+}
+.userList dl {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+.userList dt {
+  order: -1;
+}
+
+.userList dt,
+.userList dd {
+  font-size: 1.0625em;
+  line-height: 1.2941176471em;
+}
+.userList dd {
+  font-style: italic;
+}
+.userList h3 {
+  font-size: 1.0625em;
+
+  font-weight: bolder;
+}

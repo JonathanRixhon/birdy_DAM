@@ -10,18 +10,18 @@ export default function SingleUser(props) {
 
   /* console.log(user.captures ? user.captures.size : 'pas de captures') */
   return (
-    <li>
+    <li className='itemList'>
       <h3>{`${user.name} ${user.lastName}`}</h3>
       <dl>
         <dt>Identifiant</dt>
         <dd>{user.idSc}</dd>
-        <dt>Sites de capture préférés</dt>
+        {/*  <dt>Sites de capture préférés</dt>
         <dd>
           <ul>
             <li>EN COURS DE TAF</li>
             <li>EN COURS DE TAF</li>
           </ul>
-        </dd>
+        </dd> */}
         <dt>Nombre de captures</dt>
         <dd>{nbrCaptures}</dd>
       </dl>

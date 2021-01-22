@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { PrisesContext } from '../../contexts/PrisesContext'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
 import firebase from '../../utils/firebaseConfig'
+import '../../styles/singlePrise.css'
 
 export default function SinglePrise() {
   const birdIndex = useLocation().state.index
@@ -40,21 +41,13 @@ export default function SinglePrise() {
     return <Redirect to={{ pathname: '/' }} />
   }
   return (
-    <main>
+    <main className='singlePrise'>
       <h2>Mes prises</h2>
       {prises ? (
         <section>
           <h3>{currentBird.name}</h3>
-          <button onClick={(e) => handleDelete(e)}>Supprimer</button>
-          <Link
-            to={{
-              pathname: `/modifier/${currentBird.id}`,
-              state: { bird: currentBird },
-            }}>
-            Modifier
-          </Link>
 
-          <article>
+          <article className='general'>
             <h4>Informations générales</h4>
             <dl>
               <dt>Lieu</dt>
@@ -97,6 +90,17 @@ export default function SinglePrise() {
               <dd>{currentBird.adiposity}</dd>
             </dl>
           </article>
+          <Link
+            className='buttonLink bigButton'
+            to={{
+              pathname: `/modifier/${currentBird.id}`,
+              state: { bird: currentBird },
+            }}>
+            Modifier
+          </Link>
+          <button className='buttonLink' onClick={(e) => handleDelete(e)}>
+            Supprimer
+          </button>
         </section>
       ) : (
         <h3>Chargement</h3>

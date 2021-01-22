@@ -1,6 +1,8 @@
 import React, { Fragment, useContext, useState } from 'react'
 import ItemPrise from './ItemPrise'
 import { PrisesContext } from '../../contexts/PrisesContext'
+import '../../styles/prises.css'
+
 export default function MesPrises() {
   const [prises, setPrises] = useContext(PrisesContext)
   if (!prises) {
@@ -14,7 +16,7 @@ export default function MesPrises() {
     const nbPrises = prises.length
     console.log(nbPrises)
     return (
-      <main>
+      <main className='prises'>
         <h2>Mes prises</h2>
         {nbPrises ? (
           <ul>

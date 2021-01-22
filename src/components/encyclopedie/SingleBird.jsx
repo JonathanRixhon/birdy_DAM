@@ -28,13 +28,13 @@ export default function SingleBird() {
           <h2>Encyclopedie</h2>
           <section>
             <h3>{aboutBird.name}</h3>
-            <EncycloImg infos={aboutImg} />
-            <article>
-              <h4>Systématique</h4>
+            <article className='systematique'>
+              <h4 className='visually-hidden'>Systématique</h4>
               <Systematique data={aboutBird} />
             </article>
-            <article>
-              <h4>Informations</h4>
+            <EncycloImg infos={aboutImg} />
+            <article className='description'>
+              <h4 className='visually-hidden'>Informations</h4>
               <p>{aboutBird.description}</p>
             </article>
           </section>

@@ -1,0 +1,51 @@
+/*   background-color: #526772;
+  color: #fbc072;
+  #e5ebef
+ */
+.prises h2 {
+  margin-bottom: 0.5714285714em;
+}
+.prises li {
+  margin-bottom: 0.75em;
+  line-height: 1.35em;
+  font-size: 1.25em;
+  color: #e5ebef;
+  background-color: #526772;
+  grid-gap: 0 1.5em;
+  display: grid;
+  overflow: hidden;
+  border-radius: 0.4em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 3.1em);
+}
+.prises li img {
+  grid-column: 1;
+  max-width: 100%;
+  object-fit: cover;
+  align-self: stretch;
+  object-position: center;
+  order: -1;
+}
+.prises li img {
+  grid-row: 1 / span 2;
+}
+.prises li dl {
+  grid-row: span 2;
+  align-self: center;
+  text-align: center;
+}
+.prises h3 {
+  grid-column: 2;
+  line-height: 1.35em;
+  align-self: end;
+  font-weight: bolder;
+}
+.prises p {
+  grid-row: 2;
+}
+.prises .specialButton {
+  font-size: 0.8em;
+  grid-row: span 2;
+  align-self: center;
+  justify-self: center;
+}
