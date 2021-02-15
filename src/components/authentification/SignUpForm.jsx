@@ -32,15 +32,15 @@ export default function AuthForm() {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+    e.preventDefault()
     inputValidation()
-    console.log(error)
     if (!error) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(mail, pass)
         .then((user) => {
           // Signed in
-          setCurrentUser(user)
+          writeUserData(user, userDatas)
         })
         .catch((error) => {
           switch (error.code) {
@@ -60,15 +60,12 @@ export default function AuthForm() {
               break
           }
         })
-      if (currentUser) {
-        writeUserData(userDatas)
-      }
     }
   }
 
-  const writeUserData = (userDatas) => {
-    console.log('envoyé: ', currentUser.user.uid, userDatas)
-    firebase.database().ref(`users/${currentUser.user.uid}`).set(userDatas)
+  const writeUserData = (newUser, userDatas) => {
+    setCurrentUser(newUser)
+    firebase.database().ref(`users/${newUser.user.uid}`).set(userDatas)
   }
 
   return (

@@ -18,7 +18,7 @@ export default function LogInForm() {
       .catch((error) => {
         var errorCode = error.code
         var errorMessage = error.message
-        /* setError(error.code) */
+        //setError(error.code)
         switch (errorCode) {
           case 'auth/wrong-password':
             setError('Mot de passe incorrect')
